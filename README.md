@@ -1,4 +1,4 @@
-# Book and Author API
+# Books and Authors API
 
 ## Project Description
 
@@ -10,8 +10,8 @@ This project is a Book Management application that allows users to manage books 
 - [Backend API Setup](#backend-api-setup)
 - [Features](#features)
 - [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
+- [Installation](#installation)
+- [Running Server](#running-server)
 
 ## Backend API Setup
 
@@ -28,7 +28,7 @@ This project is a Book Management application that allows users to manage books 
 
     ```bash
     git clone https://github.com/ahmedGMB1/book-library-api.git
-    cd book-management-api
+    cd book-library-api
     ```
 
 2. **Install dependencies:**
@@ -57,13 +57,19 @@ This project is a Book Management application that allows users to manage books 
     php artisan migrate --seed
     ```
 
-6. **Start the server:**
+6. **Generate secret key:**
+
+    ```bash
+    php artisan jwt:secret
+    ```
+
+7. **Start the server:**
 
     ```bash
     php artisan serve
     ```
 
-    The API should now be running at `http://127.0.0.1:8000`.
+    The API should now be running at `http://127.0.0.1:8000/api`.
 
 ### Running Tests
 
