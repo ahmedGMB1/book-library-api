@@ -36,7 +36,6 @@ class BookController extends Controller
             $relations = ['author']; 
             $perPage = $request->get('per_page', config('pagination.per_page_grid'));
             $books = $this->bookService->search($criteria, $relations, $perPage);
-            //return $books; // without selecting some field from the relations: $relations = ['author:id,first_name']; 
             return BookResource::collection($books);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to search books.'], 500);

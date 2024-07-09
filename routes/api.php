@@ -25,11 +25,6 @@ Route::middleware(['auth:api'])->group(function(){
 
     // book routes
     Route::apiResource('books', BookController::class);
-    /* Route::get('books', [BookController::class, 'index'])->name('books.index'); 
-    Route::post('books', [BookController::class, 'store'])->name('books.store'); 
-    Route::get('books/{book}', [BookController::class, 'show'])->name('books.show'); 
-    Route::put('books/{book}', [BookController::class, 'update'])->name('books.update'); 
-    Route::delete('books/{book}', [BookController::class, 'destroy'])->name('books.destroy'); */ 
     // search books
     Route::get('/book/search', [BookController::class, 'search'])->name('books.search'); 
     
