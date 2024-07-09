@@ -17,7 +17,7 @@ This project is a Book Management application that allows users to manage books 
 
 ### Prerequisites
 
-- PHP 7.4 or higher
+- PHP 8.1 or higher
 - Composer
 - MySQL or any other supported database
 - Node.js and npm (for running the frontend)
