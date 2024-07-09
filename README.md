@@ -28,7 +28,6 @@ This project is a Book Management application that allows users to manage books 
 
     ```bash
     git clone https://github.com/ahmedGMB1/book-library-api.git
-    cd book-library-api
     ```
 
 2. **Install dependencies:**
