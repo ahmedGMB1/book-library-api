@@ -32,7 +32,7 @@ class AuthorController extends Controller
     public function search(Request $request)
     {
         try {
-            $criteria = $request->only(['email', 'phone', 'author_name']);
+            $criteria = $request->only(['email', 'phone', 'first_name', 'last_name']);
             $relations = ['books'];
             $perPage = $request->get('per_page', config('pagination.per_page'));
             $authors = $this->authorService->search($criteria, $relations, $perPage);
