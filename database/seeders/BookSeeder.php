@@ -15,7 +15,7 @@ class BookSeeder extends Seeder
         
         for ($i = 0; $i < 200; $i++) {
             DB::table('books')->insert([
-                'title' => $faker->sentence,
+                'title' => $faker->words(3, true),
                 'isbn' => $faker->unique()->isbn13,
                 'publisher' => $faker->company,
                 'year' => $faker->year,

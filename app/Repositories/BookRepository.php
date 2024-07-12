@@ -12,7 +12,7 @@ class BookRepository extends BaseRepository implements BookRepositoryInterface
         parent::__construct($model);
     }
    
-    public function search(array $criteria, array $relations = [], $perPage = 12)
+    /* public function search(array $criteria, array $relations = [], $perPage = 12)
     {
         $query = $this->model->with($relations);
 
@@ -28,6 +28,25 @@ class BookRepository extends BaseRepository implements BookRepositoryInterface
         }
 
         return $query->paginate($perPage);
+    } */
+
+    public function search(array $criteria, array $relations = [], $perPage = 12)
+    {
+        
+        $query = $this->model->with($relations);
+
+        $searchableFields = ['title', 'first_name', 'last_name', 'publisher', 'isbn', 'year'];
+
+        $query->where(function ($query) use ($criteria, $searchableFields) {
+            foreach ($searchableFields as $field) {
+                if (isset($criteria[$field])) {
+                    $query->orWhere($field, 'like', '%' . $criteria[$field] . '%');
+                }
+            }
+        });
+
+        return $query->paginate($perPage);
+
     }
 
 }

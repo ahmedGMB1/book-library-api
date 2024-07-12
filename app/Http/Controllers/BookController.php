@@ -32,7 +32,7 @@ class BookController extends Controller
     public function search(Request $request)
     {
         try {
-            $criteria = $request->only(['title', 'author_name']);
+            $criteria = $request->only(['title', 'first_name', 'last_name', 'publisher', 'isbn', 'year']);
             $relations = ['author']; 
             $perPage = $request->get('per_page', config('pagination.per_page_grid'));
             $books = $this->bookService->search($criteria, $relations, $perPage);
