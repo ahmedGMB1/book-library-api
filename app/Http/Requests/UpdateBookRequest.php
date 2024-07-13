@@ -32,7 +32,6 @@ class UpdateBookRequest extends FormRequest
             ],
             'publisher' => 'required|string|max:255',
             'year' => 'required|numeric',
-            'author_id' => 'required|numeric',
             'cover_image' => 'nullable|string',
             'summary' => 'nullable|string',
         ];

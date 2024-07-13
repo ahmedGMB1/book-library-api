@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Resources\AuthorResource;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
@@ -15,6 +16,18 @@ class AuthorController extends Controller
     public function __construct(AuthorServiceInterface $authorService)
     {
         $this->authorService = $authorService;
+    }
+
+    public function list(Request $request)
+    {
+        try {
+            $relations = ['books'];
+            $perPage = $request->get('per_page', config('pagination.per_page_list'));
+            $authors = $this->authorService->all($relations, $perPage);
+            return AuthorResource::collection($authors);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to retrieve authors.'], 500);
+        }
     }
 
     public function index(Request $request)
@@ -45,6 +58,7 @@ class AuthorController extends Controller
     public function store(StoreAuthorRequest $request)
     {
         try {
+            Log::info('author:', $request->toArray());
             $author = $this->authorService->create($request->validated());
             return new AuthorResource($author);
         } catch (\Exception $e) {

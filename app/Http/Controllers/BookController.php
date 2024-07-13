@@ -7,14 +7,17 @@ use App\Http\Resources\BookResource;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Services\Interfaces\BookServiceInterface;
+use App\Services\Interfaces\AuthorServiceInterface;
 
 class BookController extends Controller
 {
     protected $bookService;
+    protected $authorService;
 
-    public function __construct(BookServiceInterface $bookService)
+    public function __construct(BookServiceInterface $bookService, AuthorServiceInterface $authorService)
     {
         $this->bookService = $bookService;
+        $this->authorService = $authorService;
     }
 
     public function index(Request $request)
@@ -32,8 +35,8 @@ class BookController extends Controller
     public function search(Request $request)
     {
         try {
-            $criteria = $request->only(['title', 'first_name', 'last_name', 'publisher', 'isbn', 'year']);
-            $relations = ['author']; 
+            $criteria = $request->only(['title', 'publisher', 'isbn', 'year']);
+            $relations = ['author'];
             $perPage = $request->get('per_page', config('pagination.per_page_grid'));
             $books = $this->bookService->search($criteria, $relations, $perPage);
             return BookResource::collection($books);

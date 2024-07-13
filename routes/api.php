@@ -20,6 +20,7 @@ Route::middleware(['auth:api'])->group(function(){
 
     // author routes
     Route::apiResource('authors', AuthorController::class);
+    Route::get('/list/authors', [AuthorController::class, 'list']);
     // search authors
     Route::get('/author/search', [AuthorController::class, 'search']);
 
